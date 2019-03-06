@@ -1,0 +1,196 @@
+%
+% PhD thesis template master document
+% This is where the necessary LaTeX packages get loaded, the general
+% configuration of the document is set, and the files corresponding to each
+% chapter / section of the thesis are loaded
+
+%
+%+++++++++++++++++++++++DEFINE CLASS & PACKAGES+++++++++++++++++++++++++++++++++
+\documentclass[a4paper,twoside,12pt]{book}
+\usepackage{graphicx}               %figure insertion with \includegraphics{}
+%
+% These enable customisation of figure caption appearance
+\usepackage{caption}
+\usepackage{subfig}
+\usepackage{keyval}
+%
+\usepackage{abbrevs}                %define abbreviations
+\usepackage{amsmath}                %more maths options to align equations
+\usepackage{amssymb}                %more maths symbols e.g. hbar and plot symbols
+\usepackage{nicefrac}               %for slanted fractions
+\usepackage{setspace}               %enables use of \doublespace \onehalfspace
+%                                     \singlespace
+\usepackage{fancyhdr}               %customises header and allows chapter,
+%                                     section or page number
+\usepackage{minitoc}                %chapter contents at start of chapters
+%
+\usepackage[sectionbib]{chapterbib} %bibliography at end of chapters, you will
+%                                     need to run bibtex separately on each
+%                                     chapter file though
+%
+\usepackage{algorithm}              %for pseudocode
+\usepackage{algorithmic}
+%
+\usepackage[english]{babel}         %improved hyphenation
+%
+% Allow combining multiple rows in a tabular environment into a single cell
+\usepackage{multirow}
+%
+% This enables fixed-width, right-aligned table columns
+\usepackage{array}
+%
+% Allows to reference chapters by name, not just number
+\usepackage{nameref}
+%
+% This hyphenates multiple consecutive citations
+\usepackage{cite}
+%
+%
+%======================== DEFINE PAGE PROPERTIES =============================
+\topmargin      -1.8cm              %top of page margin
+\headheight     23pt                %running head height
+\parskip        2mm                 %paragraph spacing
+\oddsidemargin  12mm                %left margin of odd
+%                                   %page =28mm +oddsidemargin
+\evensidemargin 1mm                 %left margin of even
+%                                   %page =29mm +evensidemargin
+\textheight     250mm               %height of text box on page
+\textwidth      145mm               %width of text across the
+%                                   %page =textwidth -5mm
+\parindent      8mm                 %paragraph indentation width                 
+%
+%=================== REDEFINE DEFAULT FIGURE PLACEMENT ========================
+\makeatletter
+% This influences float placement; letters are in order of priority. Here it has
+% been set to prefer placing figures & tables at the top of the page ('t'), or 
+% place multiple floats onto a single page ('p') if necessary
+% Default is {tbp}, where 'b' is bottom of page
+\def\fps@figure{tp}
+% With the default table of contents and lists of tables/figures, I found that
+% sometimes the text would run over where the numbers appear, with the numbers
+% correspondingly forced over the page margin. These commands give the numbers
+% a bit more space and seems to solve the problem.
+\renewcommand{\@pnumwidth}{3em} 
+\renewcommand{\@tocrmarg}{4em}
+\makeatother
+%
+%
+%============== DEFINE PERSONALISED COMMANDS AND ABBREVIATIONS=================
+%
+% Check the relevant files abbrevs.txt and commands.txt to see what these do
+\include{abbrevs}
+\include{commands}
+%
+%
+%================== SET UP FIGURE AND SUB_FIGURE CAPTIONS ======================
+%
+% I found it important to make the figure captions appear different to the main
+% text; it makes it easier for the reader to follow the main text as they turn
+% the page. Feel free to customise these to your own liking however.
+%
+\captionsetup[figure]{width=0.9\textwidth,font={small,singlespacing},labelfont=bf}
+\captionsetup[table]{width=0.9\textwidth,font={small,singlespacing},labelfont=bf}
+\captionsetup[subfigure]{margin=0pt,font={small,stretch=0.80}}
+%
+% ======================== BEGIN DOCUMENT ===================================
+% Basic plain pages for introductory stuff
+% If printing single chapters for supervisor feedback,comment out this block
+\pagestyle{empty}  
+\begin{document}
+% For the beginning of the thesis, pages do not contain page numbers, and the
+% page number counter is not incremented
+\pagenumbering{gobble}
+% These pages are added in the order that the University of Melbourne requires
+% them to appear. DO NOT change this order. The blank double pages between
+% each entry are however optional. 
+\include{ch-title}
+\blankdoublepage
+\include{ch-abstract}
+\blankdoublepage
+\include{ch-declaration}
+\blankdoublepage
+\include{ch-preface}
+\blankdoublepage
+\include{ch-acknowledgments}
+\blankdoublepage
+%
+% ========================= SET UP FANCY HEADERS ==============================
+%
+% This enables a nice-looking header at the top of each page within the
+% document. The contents of the header are different for odd & even pages.
+%
+\pagestyle{fancy}                   %define headers,
+%                                   %Left/Right-Odd Page, Left/Right-Even Page
+    \fancyhead{}                    %Reset fancy fields
+    \fancyhead[LO]{\footnotesize{I. P. Freely}} %TODO Put your name here
+    \fancyhead[RO]{\footnotesize{\rightmark}}   %rightmark = section name
+    \fancyhead[LE]{\footnotesize{\leftmark}}    %leftmark = chapter name
+    \renewcommand{\headrulewidth}{0.5mm}
+        \headsep=   1.3cm             %Text separation from header
+    \cfoot{\thepage}
+        \footskip=  1.3cm             %Text separation from footer
+%
+%
+%
+%============================= CONTENTS =======================================
+% If printing single chapters for supervisor feedback,comment out this block
+\singlespace % Switch to single spacing for table of contents etc
+\dominitoc
+\setcounter{tocdepth}{2}
+\setcounter{lofdepth}{1}
+\tableofcontents
+\cleardoublepage
+\blankdoublepage
+\listoftables
+\cleardoublepage
+\blankdoublepage
+\listoffigures
+\cleardoublepage
+\blankdoublepage
+\newpage
+%
+%
+%
+%=========================== MAIN BODY=========================================
+%
+\pagenumbering{arabic} % Change from blank to arabic page numbering for the
+%                          rest of the document
+% This is where the thesis chapters are added to the document one by one.
+% When sending individual chapters to supervisors for feedback, comment out
+% the \include command for all other chapters, and use the \addtocounter command
+% below to increment the chapter number counter by the appropriate amount. This
+% way, the chapter number will be correct even though it is the only chapter
+% being printed, and your supervisors are less likely to get confused...
+%\addtocounter{chapter}{6}
+\include{ch-1}
+\blankdoublepage
+%\include{ch-2}
+%\blankdoublepage
+%\include{ch-3}
+%\blankdoublepage
+%\include{ch-4}
+%\blankdoublepage
+%\include{ch-5}
+%\blankdoublepage
+%\include{ch-6}
+%\blankdoublepage
+%\include{ch-7}
+%\blankdoublepage
+%
+%============================= REFERENCES ======================================
+%
+% I recommend providing a bibliography on a per-chapter basis, rather than a
+% single massive bibliography at the end of the thesis. It can however be handy
+% for bibliography debugging (making sure references are consistent and appear
+% properly etc.) to generate a single bibliography at the end. This should
+% howeverbe one of the last things you do before submission.
+%
+%\singlespacing
+%\bibliographystyle{ieeetr}
+%\bibliography{mybib}
+%
+\end{document}
+%
+%===============================================================================
+%
+%

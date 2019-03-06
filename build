@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# This script builds the final .pdf print of the thesis. Multiple executions of the
+#   pdflatex command are necessary to update all references and formatting.
+#
+echo ""
+echo "        <build> Executing pdflatex iteration 1"
+echo ""
+pdflatex thesis
+echo ""
+echo "        <build> Executing bibtex"
+echo ""
+bibtex ch-1
+#bibtex ch-2
+#bibtex ch-3
+#bibtex ch-4
+#bibtex ch-5
+#bibtex ch-6
+#bibtex ch-7
+#bibtex thesis # Use this line if compiling a single bibliography at the end of the document
+echo ""
+echo "        <build> Executing pdflatex iteration 2"
+echo ""
+pdflatex thesis
+echo ""
+echo "        <build> Executing pdflatex iteration 3"
+echo ""
+pdflatex thesis
+

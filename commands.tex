@@ -1,0 +1,35 @@
+%
+% Here you can define custom LaTex commands; I'm not an expert so I can't comment on the
+% power of commands, but there's some simple examples here that may be of use.
+%
+% Some of these use the \ensuremath command; basically this allows the command to be used either
+% inside or outside a math environment, without spitting cryptic compiler errors at you.
+%
+% For the math commands, LaTeX can be abit funny about including a whitespace afterwards. So
+% some of these commands have two versions, with one explicitly including a space afterwards.
+%
+\newcommand{\sq}    {\ensuremath{^2~}}
+\newcommand{\sqs}   {\ensuremath{^2}}
+\newcommand{\cb}    {\ensuremath{^3~}}
+\newcommand{\cbs}   {\ensuremath{^3}}
+\newcommand{\x}     {\ensuremath{\times}}
+\newcommand{\degr}  {\ensuremath{^\circ}~}
+\newcommand{\degrs} {\ensuremath{^\circ}}
+\newcommand{\prox}  {$\approx$}
+\newcommand{\degc}  {$^{\circ}$C~}
+\newcommand{\degcs} {$^{\circ}$C}
+%
+%
+% This command inserts a pair of completely blank pages (i.e. they don't even contain page numbers)
+% Personally I inserted these between each chapter; it ensures that for the first page of each
+% chapter (which always occurs on an odd / RHS page), the corresponding LHS page is always blank.
+\newcommand{\blankdoublepage}{
+\newpage
+\thispagestyle{empty}
+\null
+\newpage
+\thispagestyle{empty}
+\null
+}%
+%
+%
